@@ -1,0 +1,5 @@
+name: LouwChat
+version: 1.0
+author: Loulouw
+main: fr.loulouw.louwchat.Main
+softdepend: [HolographicDisplays, Essentials, BetonQuest]
