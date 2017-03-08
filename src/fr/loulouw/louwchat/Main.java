@@ -18,6 +18,7 @@ public class Main extends JavaPlugin {
         saveDefaultConfig();
         chargementListener();
 
+
         getLogger().info("[*] LouwChat en cours de demarrage...");
         getLogger().info("[*] ====");
 
