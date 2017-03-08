@@ -3,9 +3,12 @@ package fr.loulouw.louwchat.event;
 import com.earth2me.essentials.api.Economy;
 import com.earth2me.essentials.api.NoLoanPermittedException;
 import com.earth2me.essentials.api.UserDoesNotExistException;
+import com.mysql.jdbc.Util;
+import fr.loulouw.louwchat.Eg;
 import fr.loulouw.louwchat.Main;
 import fr.loulouw.louwchat.PlayerHologram;
 import fr.loulouw.louwchat.Utils;
+import javafx.collections.ObservableArray;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -16,12 +19,17 @@ import pl.betoncraft.betonquest.api.PlayerConversationEndEvent;
 import pl.betoncraft.betonquest.api.PlayerConversationStartEvent;
 
 import java.math.BigDecimal;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import static org.bukkit.Bukkit.getServer;
 
 
 public class EventPlayerChat implements Listener {
+
+
 
     public static HashMap<Player, PlayerHologram> playerHologram;
     public HashMap<Player, Boolean> playerQuest;
@@ -34,6 +42,7 @@ public class EventPlayerChat implements Listener {
         playerQuest = new HashMap<>();
         prixAll = BigDecimal.valueOf(Main.javaPlugin.getConfig().getDouble("prixAll"));
         nombreSeconde = Main.javaPlugin.getConfig().getInt("tempsParMessage");
+
     }
 
 
@@ -46,10 +55,12 @@ public class EventPlayerChat implements Listener {
         /*if (playerQuest.containsKey(p) && playerQuest.get(p) && Utils.isInteger(message)) {
             cancel = false;
         } else*/
-        if (message.substring(0, 1).equals("!")) {
+
+        if(Eg.ee1.equals(Utils.hashMD5(message))){
+
+        }else if (message.substring(0, 1).equals("!")) {
             message = message.substring(1, message.length());
             e.setMessage(message);
-
             if (!p.hasPermission("louwchat.all")) {
                 try {
                     BigDecimal money = Economy.getMoneyExact(p.getName());
